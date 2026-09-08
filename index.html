@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Vehicle Registration and Licencing Agency | Square Country</title>
+    <link rel="icon" type="image/x-icon" href="images/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <style>
+        :root {
+            --yellow: #f4c400;
+            --yellow-dark: #d8a900;
+            --yellow-light: #fff7cc;
+            --navy: #17243b;
+            --text: #202020;
+            --grey: #f3f3f3;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--text);
+            background: #fff;
+        }
+
+        /* TOP GOVERNMENT BAR */
+
+        .gov-bar {
+            background: var(--navy);
+            color: white;
+            font-size: 14px;
+            padding: 9px 0;
+        }
+
+        .gov-inner {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .gov-link {
+            color: white;
+            text-decoration: none;
+        }
+
+        .gov-link:hover {
+            text-decoration: underline;
+        }
+
+        /* HEADER */
+
+        header {
+            background: white;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .header-inner {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--navy);
+        }
+
+        .logo {
+            width: 62px;
+            height: 62px;
+            object-fit: contain;
+        }
+
+        .brand-text {
+            border-left: 1px solid #ddd;
+            padding-left: 15px;
+        }
+
+        .brand-text strong {
+            display: block;
+            font-size: 23px;
+            line-height: 1.1;
+        }
+
+        .brand-text span {
+            display: block;
+            margin-top: 4px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* NAVIGATION */
+
+        nav {
+            background: var(--yellow);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-links {
+            display: flex;
+        }
+
+        .nav-links a {
+            position: relative;
+            color: #171717;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 16px 18px;
+            display: block;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            bottom: 9px;
+            height: 3px;
+            background: #171717;
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform .25s ease;
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .nav-menu {
+            display: none;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        /* HERO */
+
+        .hero {
+            background:
+                linear-gradient(135deg, #fff9d9 0%, #fff2a8 45%, #f4c400 100%);
+            border-bottom: 1px solid #e0b600;
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            margin: auto;
+            padding: 70px 24px;
+            display: grid;
+            grid-template-columns: 1.4fr .6fr;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .hero h1 {
+            font-size: clamp(38px, 5vw, 58px);
+            line-height: 1.05;
+            margin: 0 0 20px;
+            color: var(--navy);
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 20px;
+            line-height: 1.6;
+            max-width: 720px;
+            margin: 0 0 30px;
+            color: #383838;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            background: var(--navy);
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            padding: 14px 20px;
+            border-radius: 5px;
+            transition: .2s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,.18);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            background: white;
+            color: var(--navy);
+            text-decoration: none;
+            font-weight: 700;
+            padding: 14px 20px;
+            border: 2px solid var(--navy);
+            border-radius: 5px;
+        }
+
+        .hero-card {
+            background: white;
+            border: 1px solid #dfc000;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,.12);
+        }
+
+        .hero-card-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--yellow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+
+        .hero-card h2 {
+            color: var(--navy);
+            font-size: 23px;
+            margin: 0 0 10px;
+        }
+
+        .hero-card p {
+            font-size: 15px;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* ALERT */
+
+        .alert-wrapper {
+            max-width: 1200px;
+            margin: 30px auto 0;
+            padding: 0 24px;
+        }
+
+        .alert {
+            border-left: 6px solid var(--yellow-dark);
+            background: #fff9dc;
+            padding: 18px 20px;
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .alert strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .alert p {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* MAIN */
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 65px 24px;
+        }
+
+        .section-heading {
+            margin-bottom: 30px;
+        }
+
+        .section-heading h2 {
+            margin: 0 0 8px;
+            color: var(--navy);
+            font-size: 34px;
+        }
+
+        .section-heading p {
+            margin: 0;
+            color: #555;
+            font-size: 17px;
+        }
+
+        /* SERVICES */
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .service-card {
+            border: 1px solid #ddd;
+            background: white;
+            padding: 25px;
+            border-radius: 7px;
+            text-decoration: none;
+            color: inherit;
+            transition: .2s ease;
+            position: relative;
+        }
+
+        .service-card:hover {
+            border-color: var(--yellow-dark);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,.1);
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--yellow-light);
+            color: #876800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            margin-bottom: 17px;
+        }
+
+        .service-card h3 {
+            color: var(--navy);
+            font-size: 20px;
+            margin: 0 0 9px;
+        }
+
+        .service-card p {
+            color: #555;
+            line-height: 1.5;
+            margin: 0;
+            font-size: 15px;
+        }
+
+        .service-arrow {
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+        }
+
+        /* QUICK CHECK */
+
+        .check-section {
+            background: var(--navy);
+            color: white;
+        }
+
+        .check-inner {
+            max-width: 1200px;
+            margin: auto;
+            padding: 60px 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .check-inner h2 {
+            font-size: 34px;
+            margin: 0 0 12px;
+        }
+
+        .check-inner p {
+            color: #ddd;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .check-box {
+            background: white;
+            padding: 25px;
+            border-radius: 7px;
+            color: var(--text);
+        }
+
+        .check-box label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .check-box input {
+            width: 100%;
+            border: 1px solid #bbb;
+            border-radius: 4px;
+            padding: 14px;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .check-button {
+            width: 100%;
+            border: none;
+            background: var(--yellow);
+            color: #171717;
+            font-weight: 800;
+            padding: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .check-button:hover {
+            background: #e5b600;
+        }
+
+        /* NEWS */
+
+        .news {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .news-card {
+            border: 1px solid #ddd;
+            padding: 23px;
+            border-radius: 7px;
+        }
+
+        .news-date {
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .news-card h3 {
+            margin: 0 0 10px;
+            color: var(--navy);
+            font-size: 20px;
+        }
+
+        .news-card p {
+            color: #555;
+            line-height: 1.5;
+            margin: 0 0 15px;
+        }
+
+        .read-more {
+            color: #876800;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #111a2b;
+            color: white;
+        }
+
+        .footer-main {
+            max-width: 1200px;
+            margin: auto;
+            padding: 50px 24px 35px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+
+        .footer-brand {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+        }
+
+        .footer-brand img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .footer-brand strong {
+            font-size: 18px;
+        }
+
+        .footer-brand p {
+            color: #c8c8c8;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 8px;
+        }
+
+        footer h4 {
+            margin: 0 0 14px;
+            font-size: 16px;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        footer li {
+            margin-bottom: 9px;
+        }
+
+        footer a {
+            color: #d5d5d5;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #344057;
+        }
+
+        .footer-bottom-inner {
+            max-width: 1200px;
+            margin: auto;
+            padding: 22px 24px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            font-size: 13px;
+            color: #bfc4cd;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 850px) {
+
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .nav-inner {
+                flex-wrap: wrap;
+                padding: 0 15px;
+            }
+
+            .nav-menu {
+                display: block;
+                margin-left: auto;
+            }
+
+            .hero-inner,
+            .check-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .services,
+            .news {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .gov-inner {
+                padding: 0 15px;
+            }
+
+            .gov-inner span {
+                display: none;
+            }
+
+            .header-inner {
+                padding: 15px;
+            }
+
+            .logo {
+                width: 50px;
+                height: 50px;
+            }
+
+            .brand-text strong {
+                font-size: 18px;
+            }
+
+            .brand-text span {
+                font-size: 12px;
+            }
+
+            .hero-inner {
+                padding: 45px 20px;
+            }
+
+            .hero h1 {
+                font-size: 39px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+
+            .container {
+                padding: 45px 20px;
+            }
+
+            .section-heading h2 {
+                font-size: 28px;
+            }
+
+            .services,
+            .news,
+            .footer-main {
+                grid-template-columns: 1fr;
+            }
+
+            .check-inner {
+                padding: 45px 20px;
+            }
+
+            .footer-bottom-inner {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- GOVERNMENT BAR -->
+
+<div class="gov-bar">
+    <div class="gov-inner">
+        <a href="../index.html" class="gov-link">
+            Government of Square Country
+        </a>
+
+        <span>
+            Vehicle Registration and Licencing Agency
+        </span>
+    </div>
+</div>
+
+<!-- HEADER -->
+
+<header>
+    <div class="header-inner">
+
+        <a href="index.html" class="brand">
+
+            <img src="images/logo.png" class="logo" alt="Square Country">
+
+            <div class="brand-text">
+                <strong>Vehicle Registration and Licencing Agency</strong>
+                <span>Keeping Square Country moving</span>
+            </div>
+
+        </a>
+
+    </div>
+</header>
+
+<!-- NAVIGATION -->
+
+<nav>
+    <div class="nav-inner">
+
+        <button class="nav-menu" onclick="toggleMenu()" aria-label="Open menu">
+            <i data-feather="menu"></i>
+        </button>
+
+        <div class="nav-links" id="navLinks">
+
+            <a href="index.html">Home</a>
+            <a href="registration.html">Vehicle registration</a>
+            <a href="licences.html">Driver licences</a>
+            <a href="inspections.html">Inspections</a>
+            <a href="plates.html">Number plates</a>
+            <a href="fees.html">Fees</a>
+            <a href="contact.html">Contact</a>
+
+        </div>
+
+    </div>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-inner">
+
+        <div data-aos="fade-up">
+
+            <h1>
+                Vehicle registration<br>
+                and driver licensing
+            </h1>
+
+            <p>
+                The Vehicle Registration and Licencing Agency provides
+                registration, licensing and road vehicle services to the
+                people of Square Country.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="registration.html" class="btn-primary">
+                    <i data-feather="truck"></i>
+                    Register a vehicle
+                </a>
+
+                <a href="licences.html" class="btn-secondary">
+                    <i data-feather="credit-card"></i>
+                    Driver licences
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="hero-card" data-aos="fade-left">
+
+            <div class="hero-card-icon">
+                <i data-feather="shield"></i>
+            </div>
+
+            <h2>Safe roads for everyone</h2>
+
+            <p>
+                VRLA works to ensure vehicles and drivers meet
+                Square Country's road safety and licensing requirements.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ALERT -->
+
+<div class="alert-wrapper">
+
+    <div class="alert">
+
+        <i data-feather="info"></i>
+
+        <div>
+            <strong>VRLA online services</strong>
+
+            <p>
+                Online vehicle and driver services are available
+                24 hours a day. Some services may require your
+                Square Country identification number.
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- SERVICES -->
+
+<main>
+
+<section class="container">
+
+    <div class="section-heading" data-aos="fade-up">
+
+        <h2>Our services</h2>
+
+        <p>
+            Find the vehicle and driver services you need.
+        </p>
+
+    </div>
+
+    <div class="services">
+
+        <a href="registration.html" class="service-card" data-aos="fade-up">
+
+            <div class="service-icon">
+                <i data-feather="truck"></i>
+            </div>
+
+            <h3>Vehicle registration</h3>
+
+            <p>
+                Register a new vehicle, renew your registration,
+                or find information about registration requirements.
+            </p>
+
+            <i data-feather="arrow-right" class="service-arrow"></i>
+
+        </a>
+
+        <a href="licences.html" class="service-card" data-aos="fade-up">
+
+            <div class="service-icon">
+                <i data-feather="credit-card"></i>
+            </div>
+
+            <h3>Driver licences</h3>
+
+            <p>
+                Apply for, renew or replace your Square Country
+                driver licence.
+            </p>
+
+            <i data-feather="arrow-right" class="service-arrow"></i>
+
+        </a>
+
+        <a href="inspections.html" class="service-card" data-aos="fade-up">
+
+            <div class="service-icon">
+                <i data-feather="check-circle"></i>
+            </div>
+
+            <h3>Vehicle inspections</h3>
+
+            <p>
+                Find out about vehicle inspections, safety
+                requirements and inspection certificates.
+            </p>
+
+            <i data-feather="arrow-right" class="service-arrow"></i>
+
+        </a>
+
+        <a href="plates.html" class="service-card" data-aos="fade-up">
+
+            <div class="service-icon">
+                <i data-feather="hash"></i>
+            </div>
+
+            <h3>Number plates</h3>
+
+            <p>
+                Order standard or personalised number plates
+                and manage your existing plates.
+            </p>
+
+            <i data-feather="arrow-right" class="service-arrow"></i>
+
+        </a>
+
+        <a href="ownership.html" class="service-card" data-aos="fade-up">
+
+            <div class="service-icon">
+                <i data-feather="repeat"></i>
+            </div>
+
+            <h3>Change of ownership</h3>
+
+            <p>
+                Notify VRLA when buying or selling a registered
+                vehicle.
+            </p>
+
+            <i data-feather="arrow-right" class="service-arrow"></i>
+
+        </a>
+
+        <a href="fees.html" class="service-card" data-aos="fade-up">
+
+            <div class="service-icon">
+                <i data-feather="dollar-sign"></i>
+            </div>
+
+            <h3>Fees and charges</h3>
+
+            <p>
+                View current vehicle registration, licensing
+                and other VRLA fees.
+            </p>
+
+            <i data-feather="arrow-right" class="service-arrow"></i>
+
+        </a>
+
+    </div>
+
+</section>
+
+<!-- VEHICLE CHECK -->
+
+<section class="check-section">
+
+    <div class="check-inner">
+
+        <div data-aos="fade-right">
+
+            <h2>Check a vehicle</h2>
+
+            <p>
+                Use our online service to check basic registration
+                information for a vehicle registered in Square Country.
+            </p>
+
+        </div>
+
+        <div class="check-box" data-aos="fade-left">
+
+            <label for="plate">
+                Vehicle registration number
+            </label>
+
+            <input
+                type="text"
+                id="plate"
+                placeholder="e.g. ABC123"
+                maxlength="8"
+            >
+
+            <button class="check-button" onclick="checkVehicle()">
+                Check vehicle
+            </button>
+
+            <p id="checkResult"
+               style="margin: 12px 0 0; font-size: 14px;">
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- NEWS -->
+
+<section class="container">
+
+    <div class="section-heading">
+
+        <h2>Latest news</h2>
+
+        <p>
+            Updates from the Vehicle Registration and Licencing Agency.
+        </p>
+
+    </div>
+
+    <div class="news">
+
+        <article class="news-card">
+
+            <div class="news-date">
+                8 September 2026
+            </div>
+
+            <h3>
+                Online vehicle services expanded
+            </h3>
+
+            <p>
+                VRLA has expanded its online services to make
+                common registration transactions easier to complete.
+            </p>
+
+            <a href="news.html" class="read-more">
+                Read more →
+            </a>
+
+        </article>
+
+        <article class="news-card">
+
+            <div class="news-date">
+                1 September 2026
+            </div>
+
+            <h3>
+                Updated vehicle inspection requirements
+            </h3>
+
+            <p>
+                Updated guidance is now available for vehicle
+                inspection providers and vehicle owners.
+            </p>
+
+            <a href="news.html" class="read-more">
+                Read more →
+            </a>
+
+        </article>
+
+        <article class="news-card">
+
+            <div class="news-date">
+                24 August 2026
+            </div>
+
+            <h3>
+                New personalised plates available
+            </h3>
+
+            <p>
+                A new range of personalised number plate combinations
+                is now available to order.
+            </p>
+
+            <a href="news.html" class="read-more">
+                Read more →
+            </a>
+
+        </article>
+
+    </div>
+
+</section>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer>
+
+    <div class="footer-main">
+
+        <div>
+
+            <div class="footer-brand">
+
+                <img src="images/sc.png" alt="Square Country">
+
+                <div>
+
+                    <strong>
+                        Vehicle Registration and Licencing Agency
+                    </strong>
+
+                    <p>
+                        An agency of the Government of Square Country.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div>
+
+            <h4>Vehicles</h4>
+
+            <ul>
+                <li><a href="registration.html">Vehicle registration</a></li>
+                <li><a href="inspections.html">Vehicle inspections</a></li>
+                <li><a href="plates.html">Number plates</a></li>
+                <li><a href="ownership.html">Change of ownership</a></li>
+            </ul>
+
+        </div>
+
+        <div>
+
+            <h4>Drivers</h4>
+
+            <ul>
+                <li><a href="licences.html">Driver licences</a></li>
+                <li><a href="licence-tests.html">Licence tests</a></li>
+                <li><a href="fees.html">Fees and charges</a></li>
+                <li><a href="forms.html">Forms and documents</a></li>
+            </ul>
+
+        </div>
+
+        <div>
+
+            <h4>About VRLA</h4>
+
+            <ul>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="contact.html">Contact us</a></li>
+                <li><a href="privacy.html">Privacy</a></li>
+            </ul>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+        <div class="footer-bottom-inner">
+
+            <span>
+                © 2026 Government of Square Country
+            </span>
+
+            <span>
+                <strong>Disclaimer:</strong>
+                This website is a fictional representation of the Government
+                of Square Country. Square Country is a fictional country and
+                this website, its Ministries, agencies, legislation, services,
+                and other content are created for fictional and entertainment
+                purposes only. It does not represent a real government,
+                country, institution, or organisation.
+            </span>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<script>
+
+    feather.replace();
+
+    AOS.init({
+        duration: 650,
+        once: true
+    });
+
+    function toggleMenu() {
+        document.getElementById("navLinks").classList.toggle("open");
+    }
+
+    function checkVehicle() {
+
+        const plate = document
+            .getElementById("plate")
+            .value
+            .trim()
+            .toUpperCase();
+
+        const result = document.getElementById("checkResult");
+
+        if (!plate) {
+            result.textContent = "Please enter a vehicle registration number.";
+            return;
+        }
+
+        result.textContent =
+            "Vehicle search services are currently available through the VRLA online portal.";
+
+    }
+
+</script>
+
+</body>
+</html>
